@@ -3,6 +3,24 @@ import { StatCard } from '@/components/stat-card'
 import { getDashboardMetrics, requireWorkspace } from '@/lib/data'
 import { formatDateTime, getShortUrl } from '@/lib/links'
 
+function decodeText(value?: string | null) {
+  if (!value) return ''
+  try {
+    return decodeURIComponent(value.replace(/\+/g, ' '))
+  } catch {
+    return value
+  }
+}
+
+function formatLocation(city?: string | null, country?: string | null) {
+  const decodedCity = decodeText(city)
+  const decodedCountry = decodeText(country)
+
+  if (!decodedCity && !decodedCountry) return ''
+
+  return [decodedCity, decodedCountry].filter(Boolean).join(', ')
+}
+
 export default async function DashboardHome() {
   const { workspace } = await requireWorkspace()
   const metrics = await getDashboardMetrics(workspace.id)
@@ -74,7 +92,7 @@ export default async function DashboardHome() {
                       <span className="badge subtle">{event.device_type || 'desconhecido'}</span>
                       <span className="muted small">
                         {formatDateTime(event.clicked_at)}
-                        {event.city || event.country ? ` • ${[event.city, event.country].filter(Boolean).join(', ')}` : ''}
+                        {formatLocation(event.city, event.country) ? ` • ${formatLocation(event.city, event.country)}` : ''}
                       </span>
                     </div>
                   </div>
