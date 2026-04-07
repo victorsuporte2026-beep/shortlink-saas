@@ -32,7 +32,7 @@ export default async function HomePage() {
       <section className="hero container card">
         <div className="hero-copy">
           <span className="eyebrow">MVP pronto para sair do papel</span>
-          <h1>Seu próprio Bitly com QR Code, links curtos e analytics.</h1>
+          <h1>Seu próprio MiniLink com QR Code, links curtos e analytics.</h1>
           <p>
             Crie links curtos, gere QR Codes, acompanhe cliques e controle tudo no seu próprio painel usando
             Next.js + Supabase.
@@ -49,7 +49,7 @@ export default async function HomePage() {
         <div className="hero-panel card subtle">
           <div className="mini-card">
             <span className="mini-label">Link curto</span>
-            <strong>seudominio.com/vb</strong>
+            <strong>ShortLink.com/(SeuNome)</strong>
           </div>
           <div className="mini-card">
             <span className="mini-label">Destino</span>
