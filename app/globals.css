@@ -820,3 +820,1027 @@ input:disabled {
     text-align: left;
   }
 }
+
+/* QRLytics premium landing */
+.dark-saas.marketing-shell {
+  --saas-bg: #020713;
+  --saas-bg-2: #061b3f;
+  --saas-surface: rgba(9, 28, 64, 0.72);
+  --saas-surface-strong: rgba(12, 36, 82, 0.92);
+  --saas-line: rgba(132, 189, 255, 0.22);
+  --saas-text: #f6fbff;
+  --saas-muted: #a9bed7;
+  --saas-soft: #dbeafe;
+  --saas-blue: #2377ff;
+  --saas-blue-2: #06d3ff;
+  --saas-shadow: 0 28px 90px rgba(0, 9, 28, 0.48);
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding: 0;
+  color: var(--saas-text);
+  background:
+    radial-gradient(circle at 14% 12%, rgba(35, 119, 255, 0.34), transparent 30%),
+    radial-gradient(circle at 84% 2%, rgba(6, 211, 255, 0.2), transparent 28%),
+    linear-gradient(180deg, #020713 0%, #071b3d 42%, #020713 100%);
+}
+
+.dark-saas.marketing-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 96px 96px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.82), transparent 72%);
+}
+
+.dark-saas .container {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, calc(100% - 40px));
+}
+
+.marketing-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 16px 0;
+  background: rgba(2, 7, 19, 0.78);
+  border-bottom: 1px solid rgba(132, 189, 255, 0.14);
+  backdrop-filter: blur(18px);
+}
+
+.marketing-header-inner,
+.marketing-navigation,
+.marketing-nav,
+.marketing-header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.marketing-header-inner {
+  justify-content: space-between;
+  gap: 22px;
+}
+
+.dark-saas .brand-lockup {
+  color: var(--saas-text);
+}
+
+.dark-saas .brand-lockup.large .brand-mark {
+  width: 50px;
+  height: 50px;
+}
+
+.dark-saas .brand-mark {
+  background:
+    linear-gradient(135deg, rgba(4, 13, 32, 0.96), rgba(5, 34, 86, 0.96)),
+    linear-gradient(135deg, #2377ff, #06d3ff);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+    0 18px 42px rgba(6, 211, 255, 0.22);
+}
+
+.dark-saas .brand-text strong {
+  font-size: 24px;
+  letter-spacing: 0;
+}
+
+.dark-saas .brand-text small {
+  color: #b7cff0;
+  letter-spacing: 0.08em;
+}
+
+.marketing-navigation {
+  flex: 1;
+  justify-content: flex-end;
+  gap: 26px;
+}
+
+.marketing-nav {
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid rgba(132, 189, 255, 0.16);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.marketing-nav a {
+  border-radius: 12px;
+  color: var(--saas-muted);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 12px;
+  transition: color 180ms ease, background 180ms ease;
+}
+
+.marketing-nav a:hover,
+.marketing-nav a:focus-visible {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.marketing-header-actions {
+  gap: 10px;
+}
+
+.dark-saas .button {
+  min-height: 46px;
+  border-radius: 12px;
+  border: 1px solid rgba(125, 201, 255, 0.34);
+  background: linear-gradient(135deg, var(--saas-blue) 0%, var(--saas-blue-2) 100%);
+  box-shadow: 0 18px 44px rgba(6, 116, 255, 0.28);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.dark-saas .button:hover,
+.dark-saas .button:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 56px rgba(6, 116, 255, 0.36);
+}
+
+.dark-saas .button.secondary {
+  border-color: rgba(132, 189, 255, 0.26);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: none;
+  color: #f7fbff;
+}
+
+.dark-saas .button.secondary:hover,
+.dark-saas .button.secondary:focus-visible {
+  border-color: rgba(6, 211, 255, 0.54);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu-button {
+  display: none;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  gap: 5px;
+  border: 1px solid rgba(132, 189, 255, 0.24);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.mobile-menu-button span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.saas-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(420px, 0.9fr);
+  align-items: center;
+  gap: 44px;
+  min-height: auto;
+  padding: 92px 0 88px;
+}
+
+.dark-saas .hero-copy h1 {
+  max-width: 860px;
+  margin: 0 0 24px;
+  color: #ffffff;
+  font-size: 64px;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.dark-saas .hero-copy p {
+  max-width: 680px;
+  margin: 0;
+  color: var(--saas-muted);
+  font-size: 19px;
+  line-height: 1.72;
+}
+
+.dark-saas .hero-actions {
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.platform-preview {
+  position: relative;
+  min-height: 560px;
+}
+
+.preview-glass {
+  border: 1px solid var(--saas-line);
+  background:
+    linear-gradient(145deg, rgba(12, 37, 85, 0.9), rgba(4, 15, 38, 0.72)),
+    radial-gradient(circle at top right, rgba(6, 211, 255, 0.16), transparent 38%);
+  border-radius: 22px;
+  box-shadow: var(--saas-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.preview-main {
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+  min-height: 520px;
+}
+
+.preview-main::after {
+  content: "";
+  position: absolute;
+  inset: auto -40px -70px 35%;
+  height: 170px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(35, 119, 255, 0.2), rgba(6, 211, 255, 0.22));
+  filter: blur(30px);
+}
+
+.preview-topline,
+.preview-brand,
+.preview-grid,
+.growth-card,
+.floating-metric,
+.metric-wall,
+.dashboard-headline,
+.footer-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.preview-topline,
+.preview-brand,
+.growth-card {
+  display: flex;
+  align-items: center;
+}
+
+.preview-topline {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.preview-brand {
+  gap: 12px;
+}
+
+.preview-brand span {
+  display: grid;
+  gap: 4px;
+}
+
+.preview-brand strong {
+  font-size: 16px;
+}
+
+.preview-brand small,
+.live-dot,
+.preview-stats small,
+.growth-card small,
+.floating-metric small,
+.metric-wall small {
+  color: var(--saas-muted);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.live-dot {
+  border: 1px solid rgba(6, 211, 255, 0.35);
+  border-radius: 999px;
+  padding: 8px 10px;
+  color: #aaf2ff;
+  background: rgba(6, 211, 255, 0.08);
+}
+
+.preview-grid {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.qr-showcase {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 170px;
+  height: 170px;
+  padding: 16px;
+  border: 1px solid rgba(132, 189, 255, 0.22);
+  border-radius: 20px;
+  background: linear-gradient(135deg, #f8fbff 0%, #d9f6ff 100%);
+}
+
+.qr-showcase span {
+  border-radius: 6px;
+  background: #061b3f;
+}
+
+.qr-showcase span:nth-child(2),
+.qr-showcase span:nth-child(4),
+.qr-showcase span:nth-child(8) {
+  background: #18bdf8;
+}
+
+.qr-showcase span:nth-child(5) {
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2377ff, #06d3ff);
+}
+
+.preview-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.preview-stats div,
+.metric-wall div {
+  border: 1px solid rgba(132, 189, 255, 0.18);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.055);
+  padding: 16px;
+}
+
+.preview-stats strong {
+  display: block;
+  margin-top: 8px;
+  color: #ffffff;
+  font-size: 25px;
+  letter-spacing: 0;
+}
+
+.growth-card {
+  justify-content: space-between;
+  gap: 22px;
+  margin-top: 34px;
+  border: 1px solid rgba(132, 189, 255, 0.18);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.055);
+  padding: 20px;
+}
+
+.growth-card strong,
+.floating-metric strong,
+.metric-wall strong {
+  display: block;
+  margin-top: 6px;
+  color: #ffffff;
+  font-size: 30px;
+  letter-spacing: 0;
+}
+
+.growth-line {
+  display: grid;
+  grid-template-columns: repeat(6, 34px);
+  align-items: end;
+  gap: 8px;
+  height: 110px;
+}
+
+.growth-line span,
+.analytics-chart span {
+  display: block;
+  min-height: 16px;
+  border-radius: 999px 999px 8px 8px;
+  background: linear-gradient(180deg, #06d3ff 0%, #2377ff 100%);
+}
+
+.growth-line span:nth-child(1) { height: 34%; }
+.growth-line span:nth-child(2) { height: 48%; }
+.growth-line span:nth-child(3) { height: 42%; }
+.growth-line span:nth-child(4) { height: 72%; }
+.growth-line span:nth-child(5) { height: 62%; }
+.growth-line span:nth-child(6) { height: 88%; }
+
+.floating-metric {
+  position: absolute;
+  width: 190px;
+  padding: 16px;
+}
+
+.floating-metric.one {
+  right: -26px;
+  top: 102px;
+}
+
+.floating-metric.two {
+  left: -22px;
+  bottom: 82px;
+}
+
+.landing-section,
+.benefit-section,
+.process-section,
+.analytics-section,
+.pricing-section,
+.value-section,
+.final-cta {
+  padding: 86px 0;
+}
+
+.section-heading {
+  display: grid;
+  gap: 16px;
+  max-width: 760px;
+  margin-bottom: 34px;
+}
+
+.section-heading.compact {
+  max-width: 620px;
+}
+
+.section-heading h2,
+.benefit-copy h2,
+.dashboard-headline h2,
+.value-section h2,
+.final-cta h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 46px;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.section-heading p,
+.benefit-copy p,
+.dashboard-headline p,
+.value-section p,
+.final-cta p,
+.solution-card p,
+.pricing-card p,
+.process-steps p,
+.footer-brand p {
+  margin: 0;
+  color: var(--saas-muted);
+  font-size: 16px;
+  line-height: 1.68;
+}
+
+.solution-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.solution-card,
+.pricing-card,
+.process-steps article {
+  border: 1px solid var(--saas-line);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(15, 43, 94, 0.72), rgba(6, 19, 46, 0.82)),
+    rgba(255, 255, 255, 0.04);
+  box-shadow: 0 20px 60px rgba(0, 9, 28, 0.26);
+}
+
+.solution-card {
+  display: grid;
+  gap: 16px;
+  min-height: 260px;
+  padding: 24px;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.solution-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(6, 211, 255, 0.46);
+  background: linear-gradient(180deg, rgba(19, 55, 120, 0.86), rgba(6, 23, 56, 0.92));
+}
+
+.solution-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(35, 119, 255, 0.28), rgba(6, 211, 255, 0.16));
+  color: #c8f7ff;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.solution-card h3,
+.pricing-card h3,
+.process-steps h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 22px;
+  letter-spacing: 0;
+}
+
+.solution-card a {
+  align-self: end;
+  color: #8deeff;
+  font-weight: 800;
+}
+
+.benefit-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1fr);
+  align-items: center;
+  gap: 46px;
+}
+
+.benefit-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.benefit-list,
+.value-points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.benefit-list span,
+.value-points span {
+  position: relative;
+  border: 1px solid rgba(132, 189, 255, 0.2);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.055);
+  color: #edf7ff;
+  font-weight: 800;
+  padding: 16px 16px 16px 44px;
+}
+
+.benefit-list span::before,
+.value-points span::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 19px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #06d3ff, #2377ff);
+  box-shadow: 0 0 18px rgba(6, 211, 255, 0.42);
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.process-steps article {
+  padding: 26px;
+}
+
+.process-steps span {
+  display: inline-block;
+  margin-bottom: 46px;
+  color: #8deeff;
+  font-weight: 900;
+}
+
+.process-steps h3 {
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.analytics-dashboard {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--saas-line);
+  border-radius: 24px;
+  background:
+    linear-gradient(145deg, rgba(9, 28, 64, 0.96), rgba(4, 14, 34, 0.9)),
+    radial-gradient(circle at 78% 16%, rgba(6, 211, 255, 0.2), transparent 30%);
+  box-shadow: var(--saas-shadow);
+  padding: 34px;
+}
+
+.analytics-dashboard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(6, 211, 255, 0.06) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+.dashboard-headline {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(320px, 0.8fr);
+  gap: 32px;
+  align-items: end;
+}
+
+.metric-wall {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+  margin: 34px 0;
+}
+
+.metric-wall strong {
+  font-size: 26px;
+}
+
+.analytics-chart {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  align-items: end;
+  gap: 12px;
+  height: 250px;
+  border: 1px solid rgba(132, 189, 255, 0.18);
+  border-radius: 18px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    rgba(255, 255, 255, 0.035);
+  background-size: 100% 25%;
+  padding: 22px;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.pricing-card {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding: 26px;
+}
+
+.pricing-card.featured {
+  border-color: rgba(6, 211, 255, 0.58);
+  background:
+    linear-gradient(180deg, rgba(20, 67, 150, 0.82), rgba(7, 31, 75, 0.94)),
+    rgba(255, 255, 255, 0.04);
+  transform: translateY(-12px);
+}
+
+.plan-badge {
+  width: fit-content;
+  border: 1px solid rgba(6, 211, 255, 0.38);
+  border-radius: 999px;
+  background: rgba(6, 211, 255, 0.1);
+  color: #aaf2ff;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 7px 10px;
+}
+
+.pricing-card > strong {
+  color: #ffffff;
+  font-size: 40px;
+  letter-spacing: 0;
+}
+
+.pricing-card > strong small {
+  color: var(--saas-muted);
+  font-size: 15px;
+}
+
+.pricing-card ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pricing-card li {
+  color: var(--saas-soft);
+  font-size: 15px;
+}
+
+.pricing-card li::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background: #06d3ff;
+}
+
+.pricing-card .button {
+  align-self: end;
+  width: 100%;
+}
+
+.value-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(420px, 1fr);
+  align-items: center;
+  gap: 42px;
+}
+
+.value-section > div:first-child {
+  display: grid;
+  gap: 18px;
+}
+
+.final-cta {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 18px;
+  margin-bottom: 36px;
+  border: 1px solid rgba(132, 189, 255, 0.22);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(6, 211, 255, 0.24), transparent 36%),
+    linear-gradient(145deg, rgba(14, 55, 130, 0.72), rgba(4, 15, 38, 0.92));
+  box-shadow: var(--saas-shadow);
+}
+
+.final-cta h2 {
+  max-width: 850px;
+}
+
+.final-cta p {
+  max-width: 680px;
+}
+
+.landing-footer {
+  position: relative;
+  z-index: 1;
+  padding: 56px 0;
+  border-top: 1px solid rgba(132, 189, 255, 0.14);
+  background: rgba(2, 7, 19, 0.58);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.4fr) repeat(3, minmax(140px, 1fr));
+  gap: 28px;
+}
+
+.footer-brand {
+  display: grid;
+  gap: 14px;
+}
+
+.footer-grid > div:not(.footer-brand) {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.footer-grid strong {
+  color: #ffffff;
+}
+
+.footer-grid a {
+  color: var(--saas-muted);
+  font-size: 14px;
+}
+
+.footer-grid a:hover,
+.footer-grid a:focus-visible {
+  color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dark-saas .button,
+  .solution-card,
+  .marketing-nav a {
+    transition: none;
+  }
+
+  .dark-saas .button:hover,
+  .dark-saas .button:focus-visible,
+  .solution-card:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .saas-hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 58px 0 72px;
+  }
+
+  .platform-preview {
+    min-height: 520px;
+  }
+
+  .solution-grid,
+  .metric-wall {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .benefit-section,
+  .dashboard-headline,
+  .value-section {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-card.featured {
+    transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .marketing-header-inner {
+    align-items: center;
+  }
+
+  .mobile-menu-button {
+    display: grid;
+  }
+
+  .marketing-navigation {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 20px;
+    right: 20px;
+    display: none;
+    align-items: stretch;
+    border: 1px solid rgba(132, 189, 255, 0.2);
+    border-radius: 18px;
+    background: rgba(3, 12, 31, 0.96);
+    box-shadow: var(--saas-shadow);
+    padding: 14px;
+  }
+
+  .marketing-navigation.is-open {
+    display: grid;
+    gap: 14px;
+  }
+
+  .marketing-nav,
+  .marketing-header-actions {
+    display: grid;
+    width: 100%;
+  }
+
+  .marketing-nav {
+    border-radius: 14px;
+  }
+
+  .marketing-header-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dark-saas .hero-copy h1 {
+    font-size: 50px;
+  }
+
+  .section-heading h2,
+  .benefit-copy h2,
+  .dashboard-headline h2,
+  .value-section h2,
+  .final-cta h2 {
+    font-size: 38px;
+  }
+
+  .benefit-list,
+  .value-points,
+  .process-steps,
+  .pricing-grid,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .dark-saas .container {
+    width: min(100% - 28px, 1180px);
+  }
+
+  .dark-saas .brand-lockup.large .brand-mark {
+    width: 44px;
+    height: 44px;
+  }
+
+  .dark-saas .brand-text strong {
+    font-size: 20px;
+  }
+
+  .dark-saas .brand-text small {
+    font-size: 8px;
+  }
+
+  .saas-hero {
+    gap: 32px;
+    padding: 28px 0 42px;
+  }
+
+  .dark-saas .hero-copy h1 {
+    font-size: 34px;
+    line-height: 1.08;
+  }
+
+  .dark-saas .hero-copy p {
+    font-size: 15px;
+    line-height: 1.62;
+  }
+
+  .dark-saas .hero-actions,
+  .marketing-header-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .platform-preview {
+    min-height: auto;
+  }
+
+  .preview-main {
+    min-height: auto;
+    padding: 18px;
+  }
+
+  .preview-topline,
+  .growth-card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .preview-grid {
+    grid-template-columns: 118px 1fr;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .qr-showcase {
+    width: 118px;
+    height: 118px;
+    gap: 7px;
+    padding: 12px;
+  }
+
+  .preview-stats {
+    gap: 8px;
+  }
+
+  .preview-stats div {
+    border-radius: 12px;
+    padding: 10px;
+  }
+
+  .preview-stats small {
+    font-size: 10px;
+  }
+
+  .preview-stats strong {
+    font-size: 18px;
+    margin-top: 5px;
+  }
+
+  .growth-card {
+    display: none;
+  }
+
+  .floating-metric {
+    position: static;
+    width: auto;
+    margin-top: 12px;
+  }
+
+  .landing-section,
+  .benefit-section,
+  .process-section,
+  .analytics-section,
+  .pricing-section,
+  .value-section,
+  .final-cta {
+    padding: 58px 0;
+  }
+
+  .section-heading h2,
+  .benefit-copy h2,
+  .dashboard-headline h2,
+  .value-section h2,
+  .final-cta h2 {
+    font-size: 31px;
+    line-height: 1.12;
+  }
+
+  .solution-grid,
+  .metric-wall {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-dashboard {
+    padding: 20px;
+  }
+
+  .analytics-chart {
+    gap: 8px;
+    height: 200px;
+    padding: 16px;
+  }
+
+  .final-cta {
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+}
