@@ -1,4 +1,5 @@
 import { createHash } from 'crypto'
+import { buildShortUrl, normalizeAppBaseUrl, normalizeHttpUrl } from '@/lib/urls'
 
 export function sanitizeSlug(value: string) {
   return value
@@ -10,19 +11,23 @@ export function sanitizeSlug(value: string) {
 
 export function isValidDestinationUrl(value: string) {
   try {
-    const url = new URL(value)
-    return url.protocol === 'http:' || url.protocol === 'https:'
+    normalizeHttpUrl(value)
+    return true
   } catch {
     return false
   }
 }
 
+export function normalizeDestinationUrl(value: string) {
+  return normalizeHttpUrl(value)
+}
+
 export function getBaseUrl() {
-  return (process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000').replace(/\/$/, '')
+  return normalizeAppBaseUrl(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000')
 }
 
 export function getShortUrl(slug: string) {
-  return `${getBaseUrl()}/${slug}`
+  return buildShortUrl(getBaseUrl(), slug)
 }
 
 export function hashIp(ip: string) {

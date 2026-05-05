@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { getBaseUrl, isValidDestinationUrl, sanitizeSlug } from '@/lib/links'
+import { getBaseUrl, isValidDestinationUrl, normalizeDestinationUrl, sanitizeSlug } from '@/lib/links'
 import { getCurrentWorkspace } from '@/lib/data'
 
 function toQueryParam(value: string) {
@@ -92,7 +92,7 @@ export async function createLink(formData: FormData) {
     workspace_id: workspace.id,
     created_by: user.id,
     title,
-    destination_url: destinationUrl,
+    destination_url: normalizeDestinationUrl(destinationUrl),
     description: description || null,
     expires_at: expiresAtRaw ? new Date(expiresAtRaw).toISOString() : null,
   }
@@ -134,7 +134,7 @@ export async function updateLink(formData: FormData) {
 
   const updates: Record<string, any> = {
     title,
-    destination_url: destinationUrl,
+    destination_url: normalizeDestinationUrl(destinationUrl),
     description: description || null,
     expires_at: expiresAtRaw ? new Date(expiresAtRaw).toISOString() : null,
     is_active: isActive,

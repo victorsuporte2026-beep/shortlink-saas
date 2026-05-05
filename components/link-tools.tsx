@@ -2,13 +2,14 @@
 
 import { useState } from 'react'
 import QRCode from 'qrcode'
+import { normalizeQrPayload } from '@/lib/urls'
 
 export function LinkTools({ shortUrl, title }: { shortUrl: string; title: string }) {
   const [status, setStatus] = useState('')
 
   async function copyLink() {
     try {
-      await navigator.clipboard.writeText(shortUrl)
+      await navigator.clipboard.writeText(normalizeQrPayload(shortUrl))
       setStatus('Link copiado')
       setTimeout(() => setStatus(''), 1800)
     } catch {
@@ -18,7 +19,7 @@ export function LinkTools({ shortUrl, title }: { shortUrl: string; title: string
 
   async function downloadQr() {
     try {
-      const dataUrl = await QRCode.toDataURL(shortUrl, {
+      const dataUrl = await QRCode.toDataURL(normalizeQrPayload(shortUrl), {
         width: 320,
         margin: 2,
       })
