@@ -10,12 +10,15 @@ const items = [
   { href: '/dashboard/settings', label: 'Configurações' },
 ]
 
-export function DashboardNav() {
+export function DashboardNav({ isMaster = false }: { isMaster?: boolean }) {
   const pathname = usePathname()
+  const navItems = isMaster
+    ? [...items.slice(0, 3), { href: '/dashboard/approvals', label: 'Aprovações' }, items[3]]
+    : items
 
   return (
     <nav className="sidebar-nav">
-      {items.map((item) => {
+      {navItems.map((item) => {
         const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
         return (
           <Link key={item.href} href={item.href} className={isActive ? 'nav-link active' : 'nav-link'}>

@@ -25,3 +25,4 @@ BANCO DE DADOSsenha.txt
 .DS_Store
 Thumbs.db
 .vercel
+.env*.local

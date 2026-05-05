@@ -5,6 +5,8 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { getBaseUrl, isValidDestinationUrl, normalizeDestinationUrl, sanitizeSlug } from '@/lib/links'
 import { getCurrentWorkspace } from '@/lib/data'
+import { createAdminClient } from '@/lib/supabase/admin'
+import { ensureApprovedUser, getUserApprovalStatus, isMasterUserEmail, requireMasterUser } from '@/lib/approvals'
 
 function toQueryParam(value: string) {
   return encodeURIComponent(value)
@@ -17,6 +19,8 @@ async function requireUserAndWorkspace() {
   } = await supabase.auth.getUser()
 
   if (!user) redirect('/login')
+
+  await ensureApprovedUser(user)
 
   const current = await getCurrentWorkspace(supabase, user.id)
 
@@ -32,10 +36,19 @@ export async function login(formData: FormData) {
   const password = String(formData.get('password') || '')
   const supabase = await createClient()
 
-  const { error } = await supabase.auth.signInWithPassword({ email, password })
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password })
 
   if (error) {
     redirect('/login?error=' + toQueryParam(error.message))
+  }
+
+  if (data.user) {
+    const approvalStatus = await getUserApprovalStatus(data.user.id, data.user.email || email)
+
+    if (approvalStatus !== 'approved') {
+      await supabase.auth.signOut()
+      redirect('/pending-approval?status=' + approvalStatus)
+    }
   }
 
   revalidatePath('/', 'layout')
@@ -61,7 +74,11 @@ export async function signup(formData: FormData) {
     redirect('/signup?error=' + toQueryParam(error.message))
   }
 
-  redirect('/login?message=' + toQueryParam('Conta criada. Se a confirmação por email estiver ativa, confirme seu email antes de entrar.'))
+  if (isMasterUserEmail(email)) {
+    redirect('/login?message=' + toQueryParam('Conta criada. Você já pode entrar no painel.'))
+  }
+
+  redirect('/pending-approval?email=' + toQueryParam(email))
 }
 
 export async function signOut() {
@@ -218,4 +235,68 @@ export async function updateWorkspaceSettings(formData: FormData) {
   revalidatePath('/dashboard/settings')
   revalidatePath('/dashboard')
   redirect('/dashboard/settings?success=' + toQueryParam('Configurações salvas com sucesso.'))
+}
+
+export async function approveUserAccess(formData: FormData) {
+  const {
+    user: { id: masterUserId },
+  } = await requireMasterUser()
+  const id = String(formData.get('id') || '').trim()
+
+  if (!id) {
+    redirect('/dashboard/approvals?error=' + toQueryParam('Usuário inválido.'))
+  }
+
+  const supabase = createAdminClient()
+  const { error } = await supabase
+    .from('profiles')
+    .update({
+      approval_status: 'approved',
+      approved_at: new Date().toISOString(),
+      approved_by: masterUserId,
+      rejected_at: null,
+      rejected_by: null,
+    })
+    .eq('id', id)
+
+  if (error) {
+    redirect('/dashboard/approvals?error=' + toQueryParam(error.message))
+  }
+
+  revalidatePath('/dashboard/approvals')
+  redirect('/dashboard/approvals?success=' + toQueryParam('Acesso aprovado com sucesso.'))
+}
+
+export async function rejectUserAccess(formData: FormData) {
+  const {
+    user: { id: masterUserId },
+  } = await requireMasterUser()
+  const id = String(formData.get('id') || '').trim()
+
+  if (!id) {
+    redirect('/dashboard/approvals?error=' + toQueryParam('Usuário inválido.'))
+  }
+
+  const supabase = createAdminClient()
+  const { data: profile } = await supabase.from('profiles').select('email').eq('id', id).maybeSingle()
+
+  if (isMasterUserEmail(profile?.email)) {
+    redirect('/dashboard/approvals?error=' + toQueryParam('O usuário master não pode ser rejeitado.'))
+  }
+
+  const { error } = await supabase
+    .from('profiles')
+    .update({
+      approval_status: 'rejected',
+      rejected_at: new Date().toISOString(),
+      rejected_by: masterUserId,
+    })
+    .eq('id', id)
+
+  if (error) {
+    redirect('/dashboard/approvals?error=' + toQueryParam(error.message))
+  }
+
+  revalidatePath('/dashboard/approvals')
+  redirect('/dashboard/approvals?success=' + toQueryParam('Cadastro rejeitado.'))
 }

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { login } from '@/app/actions'
+import { BrandLockup } from '@/components/brand'
 import { createClient } from '@/lib/supabase/server'
 
 export default async function LoginPage({
@@ -17,12 +18,12 @@ export default async function LoginPage({
   if (user) redirect('/dashboard')
 
   return (
-    <main className="auth-wrapper">
+    <main className="auth-wrapper brand-auth">
       <div className="auth-card card">
+        <BrandLockup href="/" size="large" />
         <div>
-          <span className="eyebrow">ShortLink SaaS</span>
           <h1>Entrar</h1>
-          <p>Use seu email e senha para acessar o painel.</p>
+          <p>Use seu email e senha para acessar o painel QRLytics.</p>
         </div>
 
         {params.error ? <div className="alert error">{params.error}</div> : null}

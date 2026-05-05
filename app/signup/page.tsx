@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { signup } from '@/app/actions'
+import { BrandLockup } from '@/components/brand'
 import { createClient } from '@/lib/supabase/server'
 
 export default async function SignupPage({
@@ -17,12 +18,12 @@ export default async function SignupPage({
   if (user) redirect('/dashboard')
 
   return (
-    <main className="auth-wrapper">
+    <main className="auth-wrapper brand-auth">
       <div className="auth-card card">
+        <BrandLockup href="/" size="large" />
         <div>
-          <span className="eyebrow">ShortLink SaaS</span>
-          <h1>Criar conta</h1>
-          <p>Ao cadastrar, o sistema cria seu perfil e um workspace inicial automaticamente.</p>
+          <h1>Solicitar acesso</h1>
+          <p>Seu cadastro será revisado pelo administrador antes da liberação do painel.</p>
         </div>
 
         {params.error ? <div className="alert error">{params.error}</div> : null}
@@ -41,7 +42,7 @@ export default async function SignupPage({
             <input name="password" type="password" placeholder="Crie uma senha forte" minLength={6} required />
           </label>
           <button className="button full" type="submit">
-            Criar conta
+            Enviar solicitação
           </button>
         </form>
 

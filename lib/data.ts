@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { ensureApprovedUser } from '@/lib/approvals'
 
 export async function getAuthedUser() {
   const supabase = await createClient()
@@ -8,6 +9,8 @@ export async function getAuthedUser() {
   } = await supabase.auth.getUser()
 
   if (!user) redirect('/login')
+
+  await ensureApprovedUser(user)
 
   return { supabase, user }
 }
