@@ -26,8 +26,16 @@ export function getBaseUrl() {
   return normalizeAppBaseUrl(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000')
 }
 
+export function getShortLinkBaseUrl() {
+  return normalizeAppBaseUrl(
+    process.env.NEXT_PUBLIC_SHORTLINK_URL ||
+      process.env.NEXT_PUBLIC_APP_URL ||
+      'http://localhost:3000'
+  )
+}
+
 export function getShortUrl(slug: string) {
-  return buildShortUrl(getBaseUrl(), slug)
+  return buildShortUrl(getShortLinkBaseUrl(), slug)
 }
 
 export function hashIp(ip: string) {

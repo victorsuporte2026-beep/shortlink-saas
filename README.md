@@ -112,6 +112,7 @@ NEXT_PUBLIC_SUPABASE_URL=https://SEU-PROJETO.supabase.co
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_xxx
 SUPABASE_SERVICE_ROLE_KEY=seu_service_role_key
 NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_SHORTLINK_URL=https://qr.seudominio.com
 ```
 
 ## 8. Deploy
